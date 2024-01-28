@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1hk6ivp82ty1"]
+
+[ext_resource type="Script" path="res://HUD.cs" id="1_yu0fk"]
+[ext_resource type="FontFile" uid="uid://cq22kgc4a87ks" path="res://dodge_assets/fonts/Xolonium-Regular.ttf" id="2_3fl42"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_yu0fk")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_3fl42")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -39.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_3fl42")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the Creeps!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 151.5
+offset_top = 634.0
+offset_right = 328.5
+offset_bottom = 720.0
+theme_override_fonts/font = ExtResource("2_3fl42")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[connection signal="timeout" from="MessageTimer" to="." method="OnMessageTimerTimeout"]
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

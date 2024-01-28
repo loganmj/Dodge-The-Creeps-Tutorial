@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjsesxgvpqd2o"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_kvteb"]
+[ext_resource type="Texture2D" uid="uid://d4mkaxknp0i45" path="res://dodge_assets/art/playerGrey_walk1.png" id="2_u1bpc"]
+[ext_resource type="Texture2D" uid="uid://c6ucl7ydrq3qu" path="res://dodge_assets/art/playerGrey_up1.png" id="3_2fbfj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw4r8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u1bpc")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2fbfj")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_81dtm"]
+radius = 24.0
+height = 66.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_kvteb")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_dw4r8")
+animation = &"right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_81dtm")
+
+[connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]
